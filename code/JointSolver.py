@@ -25,6 +25,8 @@ class JointSolver(object):
         self.goals = tuple(goals)
         self.num_of_agents = len(goals)
         self.CPU_time = 0.0
+        self.num_expanded = 0
+        self.peak_open = 0
 
         # Pre-compute heuristics for every agent
         self.heuristics = []
@@ -125,13 +127,19 @@ class JointSolver(object):
         initial_f = initial_g + initial_h
 
         open_list = [(initial_f, initial_g, start_state, [start_state])]
+        self.peak_open = max(self.peak_open, len(open_list))
+
         closed_list = set()
         closed_list.add(start_state)
+
+        self.num_expanded = 0
 
         final_joint_path = None
 
         while open_list:
+            self.peak_open = max(self.peak_open, len(open_list))
             _, g, curr_joint, path = heapq.heappop(open_list)
+            self.num_expanded += 1
 
             # Goal test
             if curr_joint == goal_state:
