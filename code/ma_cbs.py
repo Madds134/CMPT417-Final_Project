@@ -186,7 +186,7 @@ class MACBS:
         starts = [self.starts[a] for a in agents]
         goals = [self.goals[a] for a in agents]
 
-        js = JointSolver(self.my_map, starts, goals)
+        js = JointSolver(self.my_map, starts, goals, agents, constraints)
         joint_paths = js.find_solution()
         if joint_paths is None:
             return None
@@ -346,3 +346,5 @@ if __name__ == "__main__":
     print("Solution paths:")
     for i, p in enumerate(paths):
         print(f"Agent {i}:", p)
+
+
