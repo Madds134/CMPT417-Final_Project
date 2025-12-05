@@ -9,6 +9,7 @@ from single_agent_planner import (
 )
 from JointSolver import JointSolver
 
+# python run_experiments.py --instance instances/test_10.txt --solver MACBS # ran using this just change the instance number 47 doesnt work like the other ones
 
 def detect_collision(path1, path2):
     """
@@ -292,7 +293,8 @@ class MACBS:
                     "paths": child_paths,
                     "collisions": detect_collisions(child_paths),
                     "cost": get_sum_of_cost(child_paths),
-                    "conflict_counts": dict(node["conflict_counts"]),
+                    # keep as defaultdict(int) so new pairs start at 0
+                    "conflict_counts": defaultdict(int, node["conflict_counts"]),
                 }
                 self.push_node(child)
 
@@ -315,7 +317,8 @@ class MACBS:
                         "paths": child_paths,
                         "collisions": detect_collisions(child_paths),
                         "cost": get_sum_of_cost(child_paths),
-                        "conflict_counts": dict(node["conflict_counts"]),
+                        # keep as defaultdict(int) here as well
+                        "conflict_counts": defaultdict(int, node["conflict_counts"]),
                     }
                     self.push_node(child)
 
@@ -345,5 +348,3 @@ if __name__ == "__main__":
     print("Solution paths:")
     for i, p in enumerate(paths):
         print(f"Agent {i}:", p)
-
-
