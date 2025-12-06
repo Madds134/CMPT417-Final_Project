@@ -177,18 +177,20 @@ class JointSolver(object):
             table = self.constraint_tables[i]
             if is_constrained(loc, loc, 0, table):
                 # No feasible path if start is illegal
+                self.CPU_time = timer.time() - start_time
                 return None
 
-        # Priority queue of (f-cost, g-cost, joint-state, time, path-history)
-        initial_h = self.get_joint_heuristic(start_state)
+        # Initial costs
         initial_g = 0
+        initial_h = self.get_joint_heuristic(start_state)
         initial_f = initial_g + initial_h
 
+        # Priority queue of (f-cost, g-cost, joint-state, time, path-history)
         open_list = [(initial_f, initial_g, start_state, start_t, [start_state])]
-        self.peak_open = max(self.peak_open, len(open_list))
+        self.peak_open = 1
 
-        closed_list = set()
-        closed_list.add((start_state, start_t))
+        # best_g[(joint_state, t)] = lowest g seen so far
+        best_g = {(start_state, start_t): initial_g}
 
         self.num_expanded = 0
         final_joint_path = None
@@ -197,6 +199,11 @@ class JointSolver(object):
             self.peak_open = max(self.peak_open, len(open_list))
             _, g, curr_joint, t, path = heapq.heappop(open_list)
             self.num_expanded += 1
+
+            state_key = (curr_joint, t)
+            # If we already found a cheaper way to this state, skip it
+            if g > best_g.get(state_key, float("inf")):
+                continue
 
             # Goal test: all at goals, past earliest allowed goal time,
             # and no constraint violation at this timestep.
@@ -216,17 +223,18 @@ class JointSolver(object):
 
             for next_joint in neighbors:
                 next_t = t + 1
-                state_key = (next_joint, next_t)
-                if state_key in closed_list:
-                    continue
 
-                closed_list.add(state_key)
-
-                # Cost update: sum of costs
-                step_c = self.step_cost(next_joint)
+                # Cost update: charge cost for being in the CURRENT state
+                step_c = self.step_cost(curr_joint)
                 new_g = g + step_c
                 new_h = self.get_joint_heuristic(next_joint)
                 new_f = new_g + new_h
+
+                next_key = (next_joint, next_t)
+                # If we've already seen this (state, time) cheaper, skip
+                if new_g >= best_g.get(next_key, float("inf")):
+                    continue
+                best_g[next_key] = new_g
 
                 new_path = list(path)
                 new_path.append(next_joint)
@@ -239,12 +247,25 @@ class JointSolver(object):
             return None
 
         # Transform joint path to individual paths for return format
+                # Transform joint path to individual paths for return format.
+        # Important: trim trailing wait-at-goal steps so that each agent's
+        # path ends when it *finally* reaches and stays at its goal.
         result = []
+        T_end = len(final_joint_path) - 1
+
         for i in range(self.num_of_agents):
-            agent_path = []
-            for joint_state in final_joint_path:
-                agent_path.append(joint_state[i])
+            goal_loc = self.goals[i]
+
+            # Walk backwards from the end to find the earliest timestep
+            # from which this agent stays at the goal for the rest of the joint path.
+            arrival_idx = T_end
+            while arrival_idx > 0 and final_joint_path[arrival_idx - 1][i] == goal_loc:
+                arrival_idx -= 1
+
+            # Keep the states up to and including arrival_idx.
+            agent_path = [state[i] for state in final_joint_path[:arrival_idx + 1]]
             result.append(agent_path)
+
 
         # Optional: print stats (you may mute this in experiments)
         print("\nJointSolver solution:")
@@ -255,6 +276,7 @@ class JointSolver(object):
         print("  Peak open size:   {}".format(self.peak_open))
 
         return result
+
 
 
 # Local test with no constraints
