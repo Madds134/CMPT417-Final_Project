@@ -98,13 +98,14 @@ class JointSolver(object):
 
         return True
 
-    # Neighbor generation with constraints
+        # Neighbor generation with constraints
     def get_neighbors(self, curr_joint, t):
         """
         Generates all valid joint moves from curr_joint at time t -> t+1.
 
         For each agent i:
-          - consider moves N/E/S/W + wait
+          - if it is already at its goal, it can only wait (if not constrained)
+          - otherwise, consider moves N/E/S/W + wait
           - filter by map & obstacles
           - filter by that agent's constraint table (vertex/edge)
         """
@@ -114,21 +115,31 @@ class JointSolver(object):
             agent_moves = []
             curr_loc = curr_joint[i]
             table = self.constraint_tables[i]
+            goal_loc = self.goals[i]
 
-            # Directions: 0=up, 1=right, 2=down, 3=left
-            for direction in range(4):
-                next_loc = move(curr_loc, direction)
-                # Check map bounds and obstacles
-                if not self.is_valid_cell(next_loc):
-                    continue
-                # Check per-agent constraints at t+1
-                if is_constrained(curr_loc, next_loc, t + 1, table):
-                    continue
-                agent_moves.append(next_loc)
+            if curr_loc == goal_loc:
+                # Once at the goal, the agent MUST stay there (standard MAPF semantics).
+                # It cannot leave the goal later.
+                if not is_constrained(curr_loc, curr_loc, t + 1, table):
+                    agent_moves.append(curr_loc)
+                else:
+                    # No legal way to remain at goal -> no successors from this joint state
+                    return []
+            else:
+                # Agent not yet at its goal: can move in 4 directions
+                for direction in range(4):
+                    next_loc = move(curr_loc, direction)
+                    # Check map bounds and obstacles
+                    if not self.is_valid_cell(next_loc):
+                        continue
+                    # Check per-agent constraints at t+1
+                    if is_constrained(curr_loc, next_loc, t + 1, table):
+                        continue
+                    agent_moves.append(next_loc)
 
-            # Explicitly wait
-            if not is_constrained(curr_loc, curr_loc, t + 1, table):
-                agent_moves.append(curr_loc)
+                # Explicitly wait in place (still not at goal)
+                if not is_constrained(curr_loc, curr_loc, t + 1, table):
+                    agent_moves.append(curr_loc)
 
             if not agent_moves:
                 # This agent cannot move at all at t+1 under constraints:
@@ -137,13 +148,14 @@ class JointSolver(object):
 
             possible_moves.append(agent_moves)
 
-        # Cartesian Product to get joint moves
+        # Cartesian product to get joint moves
         valid_neighbors = []
         for next_joint in itertools.product(*possible_moves):
             if self.is_valid_joint_move(curr_joint, next_joint):
                 valid_neighbors.append(next_joint)
 
         return valid_neighbors
+
 
     def step_cost(self, joint_state):
         """
