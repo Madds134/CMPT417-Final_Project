@@ -8,21 +8,8 @@ from cbs import CBSSolver
 
 # Your MA-CBS implementation
 from ma_cbs import MACBS
-
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
-
-
-DEFAULT_SOLVER = "CBS"  # can be overridden with --solver
-
-
-# ---------- Utility functions ----------
-
-def print_mapf_instance(my_map, starts, goals):
-    print("Start locations")
-    print_locations(my_map, starts)
-    print("Goal locations")
-    print_locations(my_map, goals)
 
 
 def print_locations(my_map, locations):
@@ -41,6 +28,13 @@ def print_locations(my_map, locations):
                 s += ". "
         s += "\n"
     print(s)
+
+
+def print_mapf_instance(my_map, starts, goals):
+    print("Start locations")
+    print_locations(my_map, starts)
+    print("Goal locations")
+    print_locations(my_map, goals)
 
 
 def import_mapf_instance(filename):
@@ -77,29 +71,50 @@ def import_mapf_instance(filename):
     return my_map, starts, goals
 
 
-# ---------- Main entry point ----------
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Runs various MAPF algorithms")
-    parser.add_argument("--instance", type=str, default=None,
-                        help="Instance file or pattern (use quotes for wildcards)")
-    parser.add_argument("--batch", action="store_true", default=False,
-                        help="Batch mode (no animation)")
-    parser.add_argument("--disjoint", action="store_true", default=False,
-                        help="Use disjoint splitting for CBS")
-    parser.add_argument("--solver", type=str, default=DEFAULT_SOLVER,
-                        help="CBS, MACBS, Independent, Prioritized")
-    parser.add_argument("--merge_threshold", type=int, default=2,
-                        help="Merge threshold for MA-CBS")
+    parser = argparse.ArgumentParser(description="Run MA-CBS on MAPF instances")
+    parser.add_argument(
+        "--instance",
+        type=str,
+        required=True,
+        help="Instance file or pattern (use quotes for wildcards)",
+    )
+    parser.add_argument(
+        "--solver",
+        type=str,
+        default="MACBS",
+        help="Only MACBS is supported in this script",
+    )
+    parser.add_argument(
+        "--merge_threshold",
+        type=int,
+        default=2,
+        help="Merge threshold for MA-CBS",
+    )
+    parser.add_argument(
+        "--macbs_low_level",
+        type=str,
+        choices=["joint", "nested"],
+        default="joint",
+        help="Low-level solver used for merged groups: joint or nested",
+    )
+    parser.add_argument(
+        "--batch",
+        action="store_true",
+        default=False,
+        help="Batch mode (no animation)",
+    )
 
     args = parser.parse_args()
+
+    if args.solver.upper() != "MACBS":
+        raise RuntimeError("This script currently only supports --solver MACBS")
 
     # Output file
     result_file = open("results.csv", "w", buffering=1)
 
-    # Process instance files
     for file in sorted(glob.glob(args.instance)):
-        print(f"\n*** Import instance: {file} ***")
+        print(f"\n*** Instance: {file} ***")
         my_map, starts, goals = import_mapf_instance(file)
         print_mapf_instance(my_map, starts, goals)
 
@@ -124,26 +139,20 @@ if __name__ == "__main__":
                 merge_threshold=args.merge_threshold
             )
             paths = solver.find_solution()
+        print(f"*** MA-CBS ({args.macbs_low_level.upper()}) ***")
+        solver = MACBS(
+            my_map,
+            starts,
+            goals,
+            merge_threshold=args.merge_threshold,
+            low_level_mode=args.macbs_low_level,
+        )
+        paths = solver.find_solution()
 
-        elif solver_name == "INDEPENDENT":
-            print("*** Running Independent solver ***")
-            solver = IndependentSolver(my_map, starts, goals)
-            paths = solver.find_solution()
-
-        elif solver_name == "PRIORITIZED":
-            print("*** Running Prioritized Planning solver ***")
-            solver = PrioritizedPlanningSolver(my_map, starts, goals)
-            paths = solver.find_solution()
-
-        else:
-            raise RuntimeError(f"Unknown solver: {args.solver}")
-
-        # Compute cost
         cost = get_sum_of_cost(paths)
         print(f"Total cost: {cost}")
-        result_file.write(f"{file},{solver_name},{cost}\n")
+        result_file.write(f"{file},MACBS-{args.macbs_low_level},{cost}\n")
 
-        # Optional animation
         if not args.batch:
             print("*** Simulation ***")
             animation = Animation(my_map, starts, goals, paths)

@@ -1,6 +1,9 @@
 import heapq
 import time as timer
 from collections import defaultdict
+#python run_experiments.py --instance instances/instanceExample28.txt --solver MACBS --macbs_low_level nested
+#python run_experiments.py --instance instances/instanceExample28.txt --solver MACBS --macbs_low_level nested
+
 from single_agent_planner import (
     a_star,
     compute_heuristics,
@@ -8,15 +11,19 @@ from single_agent_planner import (
     get_location,
 )
 from JointSolver import JointSolver
+from NestedCBS import NestedCBSSolver
 
-# python run_experiments.py --instance instances/test_10.txt --solver MACBS # ran using this just change the instance number 47 doesnt work like the other ones
+
+###########################################################
+# Collision detection helpers
+###########################################################
 
 def detect_collision(path1, path2):
     """
     Return the first collision between two paths, or None.
     Collision format: {'loc': [...], 'timestep': t}
-    Vertex collision: loc = [cell]
-    Edge collision:   loc = [cell_from, cell_to]
+      - Vertex collision: loc = [cell]
+      - Edge collision:   loc = [cell_from, cell_to]
     """
     timesteps = max(len(path1), len(path2))
 
@@ -40,7 +47,7 @@ def detect_collision(path1, path2):
 
 def detect_collisions(paths):
     """
-    Return list of first collisions between all agent pairs.
+    Return list of first collisions between ALL pairs of paths.
     Each entry: {'a1': i, 'a2': j, 'loc': [...], 'timestep': t}
     """
     collisions = []
@@ -64,6 +71,7 @@ def standard_splitting(collision):
       Edge collision at (u->v), time t:
         - forbid a1 traversing (u,v) at time t
         - forbid a2 traversing (v,u) at time t
+    Returned constraints use *agent indices in the current context*.
     """
     a1 = collision["a1"]
     a2 = collision["a2"]
@@ -89,17 +97,33 @@ def standard_splitting(collision):
     return []
 
 
+###########################################################
+# MA-CBS
+###########################################################
+
 class MACBS:
     """
-    Meta-Agent Conflict-Based Search (MA-CBS) with a pluggable low-level solver for meta-agents.
+    Meta-Agent Conflict-Based Search (MA-CBS).
+
+    - Starts with each agent in its own meta-group.
+    - When a pair of agents collide too many times (>= merge_threshold),
+      their groups are merged and replanned jointly (either Joint A* or
+      a nested CBS).
     """
 
-    def __init__(self, my_map, starts, goals, merge_threshold=1, low_level_mode="joint"):
+    def __init__(
+        self,
+        my_map,
+        starts,
+        goals,
+        merge_threshold=2,
+        low_level_mode="joint",   # "joint" or "nested"
+    ):
         """
         my_map          : 2D grid (True = obstacle, False = free)
         starts/goals    : list of (row, col)
         merge_threshold : # of conflicts before merging a pair of agents
-        low_level_mode  : "joint" for Joint A* on merged groups (for now)
+        low_level_mode  : "joint" or "nested"
         """
         assert len(starts) == len(goals)
         self.my_map = my_map
@@ -116,13 +140,17 @@ class MACBS:
         self.start_time = None
 
         # Low-level heuristics for single-agent A*
+        # heuristics[i] is a dict for agent i's goal
         self.heuristics = [
             compute_heuristics(my_map, g) for g in self.goals
         ]
 
+        # For counting conflicts between pairs of agents
         self.hl_closed = set()
 
+    #######################################################
     # Meta-group utilities
+    #######################################################
     def initial_meta_groups(self):
         """Each agent starts in its own meta-group."""
         return [frozenset([i]) for i in range(self.num_agents)]
@@ -156,7 +184,9 @@ class MACBS:
         new_groups.append(merged)
         return new_groups
 
+    #######################################################
     # Low-level planning for a meta-group
+    #######################################################
     def plan_single_group(self, group, constraints):
         """
         Plan for a group assuming we solve each agent independently with A*.
@@ -164,13 +194,15 @@ class MACBS:
         """
         group_paths = {}
         for a in group:
-            h_vals = self.heuristics[a]
+            # Defensive: wrap heuristic dict so missing keys just get 0
+            # (avoids KeyError like h_values[start_loc])
+            h_vals = defaultdict(int, self.heuristics[a])
             path = a_star(
                 self.my_map,
                 self.starts[a],
                 self.goals[a],
                 h_vals,
-                a,
+                a,              # global agent id
                 constraints,
             )
             if path is None:
@@ -180,7 +212,8 @@ class MACBS:
 
     def plan_joint_group(self, group, constraints):
         """
-        Plan for a group using Joint A*.
+        Plan for a group using Joint A* (JointSolver).
+        Returns dict {agent_id: path} or None.
         """
         agents = sorted(list(group))
         starts = [self.starts[a] for a in agents]
@@ -196,6 +229,24 @@ class MACBS:
             group_paths[a] = joint_paths[i]
         return group_paths
 
+    def plan_nested_group(self, group, constraints):
+        """
+        Plan for a group using nested CBS (NestedCBSSolver).
+        Returns dict {agent_id: path} or None.
+        """
+        agents = sorted(list(group))
+        starts = [self.starts[a] for a in agents]
+        goals = [self.goals[a] for a in agents]
+
+        solver = NestedCBSSolver(
+            self.my_map,
+            starts,
+            goals,
+            agents,       # global IDs
+            constraints,
+        )
+        return solver.find_solution()   # dict {global_id: path} or None
+
     def replan_all_groups(self, constraints, meta_groups):
         """
         Given constraints and a set of meta-groups, replan for all agents.
@@ -207,7 +258,12 @@ class MACBS:
             if len(group) == 1:
                 res = self.plan_single_group(group, constraints)
             else:
-                res = self.plan_joint_group(group, constraints)
+                if self.low_level_mode == "joint":
+                    res = self.plan_joint_group(group, constraints)
+                elif self.low_level_mode == "nested":
+                    res = self.plan_nested_group(group, constraints)
+                else:
+                    raise ValueError(f"Unknown low-level mode: {self.low_level_mode}")
 
             if res is None:
                 return None
@@ -221,7 +277,9 @@ class MACBS:
 
         return new_paths
 
+    #######################################################
     # Open list helpers
+    #######################################################
     def push_node(self, node):
         heapq.heappush(
             self.open_list,
@@ -234,7 +292,9 @@ class MACBS:
         self.num_of_expanded += 1
         return node
 
+    #######################################################
     # MA-CBS main search
+    #######################################################
     def find_solution(self):
         """
         Run MA-CBS and return paths for all agents.
@@ -293,17 +353,24 @@ class MACBS:
                     "paths": child_paths,
                     "collisions": detect_collisions(child_paths),
                     "cost": get_sum_of_cost(child_paths),
-                    # keep as defaultdict(int) so new pairs start at 0
                     "conflict_counts": defaultdict(int, node["conflict_counts"]),
                 }
                 self.push_node(child)
 
             else:
-                # SPLIT (Standard CBS)
+                # ---- SPLIT path (Standard CBS) ----
                 new_constraints = standard_splitting(collision)
 
                 for c in new_constraints:
-                    child_constraints = list(node["constraints"]) + [c]
+                    child_constraints = list(node["constraints"])
+                    # c["agent"] is *global* agent index in MA-CBS
+                    child_constraints.append(
+                        {
+                            "agent": c["agent"],
+                            "loc": c["loc"],
+                            "timestep": c["timestep"],
+                        }
+                    )
                     child_meta_groups = list(node["meta_groups"])
                     child_paths = self.replan_all_groups(
                         child_constraints, child_meta_groups
@@ -317,7 +384,6 @@ class MACBS:
                         "paths": child_paths,
                         "collisions": detect_collisions(child_paths),
                         "cost": get_sum_of_cost(child_paths),
-                        # keep as defaultdict(int) here as well
                         "conflict_counts": defaultdict(int, node["conflict_counts"]),
                     }
                     self.push_node(child)
@@ -325,7 +391,7 @@ class MACBS:
         raise RuntimeError("No solution found")
 
     def print_results(self, node):
-        print("\nFound a solution!\n")
+        print("\nFound a solution with MA-CBS!\n")
         CPU_time = timer.time() - self.start_time
         print("CPU time (s):    {:.4f}".format(CPU_time))
         print("Sum of costs:    {}".format(get_sum_of_cost(node["paths"])))
@@ -343,7 +409,7 @@ if __name__ == "__main__":
     starts = [(0, 0), (2, 2)]
     goals = [(2, 2), (0, 0)]
 
-    solver = MACBS(my_map, starts, goals, merge_threshold=1)
+    solver = MACBS(my_map, starts, goals, merge_threshold=1, low_level_mode="joint")
     paths = solver.find_solution()
     print("Solution paths:")
     for i, p in enumerate(paths):
