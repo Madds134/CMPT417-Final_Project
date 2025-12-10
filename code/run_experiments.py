@@ -4,6 +4,7 @@ import glob
 from pathlib import Path
 
 # Existing solvers
+from cbs import CBSSolver
 
 # Your MA-CBS implementation
 from ma_cbs import MACBS
@@ -107,8 +108,12 @@ if __name__ == "__main__":
 
         if solver_name == "CBS":
             print("*** Running CBS ***")
-            solver = CBSSolver(my_map, starts, goals)
-            paths = solver.find_solution(disjoint=args.disjoint, meta=False)
+            # surpress problem errors
+            try:
+                solver = CBSSolver(my_map, starts, goals)
+                paths = solver.find_solution(disjoint=args.disjoint)#, meta=False)
+            except:
+                exit()
 
         elif solver_name == "MACBS":
             print("*** Running Meta-Agent CBS (MA-CBS) ***")
@@ -145,4 +150,7 @@ if __name__ == "__main__":
             animation.show()
 
     result_file.close()
-    print("\n✅ All instances complete. Results saved to results.csv.")
+    try:
+        print("\n✅ All instances complete. Results saved to results.csv.")
+    except:
+        print("\nAll instances complete. Results saved to results.csv.")

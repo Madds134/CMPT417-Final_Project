@@ -1,0 +1,87 @@
+
+*** Import instance: ../tmpInstances/exp45.txt ***
+Start locations
+. @ . . @ . . . . 4 . @ @ . . @ . @ . @ 
+. @ . @ . . . . @ . 0 . . . . . . . . . 
+@ @ @ @ . . . @ @ . . . . . . . . . @ . 
+. . @ . @ . @ @ . . @ . @ @ . . . . @ . 
+. @ . . . @ @ . . . . . @ . @ . . @ @ 3 
+. . . @ 8 @ . @ . @ @ . . . @ . @ . @ 5 
+. . . . . 9 . . . @ . @ . . . . @ @ . . 
+. @ . . @ . @ . . . . . . . @ . . . . . 
+. . . . @ . . @ @ . @ . . . . . @ @ @ @ 
+. . . . . 2 @ @ . . . . . . . . . . . . 
+. . @ . . . . . . @ . @ . . . . . @ . @ 
+. @ . . @ @ . @ . @ . @ @ . @ @ @ @ . . 
+. . . . . . . . @ . @ . . . . @ @ @ . @ 
+@ @ . . . . . . . @ . @ @ . . . @ . @ @ 
+@ . . . . . . . . @ . . . . 6 . @ . . . 
+. @ . 7 @ . @ . . @ . . . . . . @ @ . . 
+. . . . 1 . . . . . . @ @ . @ . . . . . 
+. @ . . . @ . . @ . . . . . @ . @ . . . 
+. @ . @ . . . @ . . . @ @ . . @ . . . @ 
+. . . @ @ . @ . @ . . @ @ . . . @ . . @ 
+
+Goal locations
+. @ . . @ . . . . . . @ @ . . @ . @ . @ 
+. @ . @ . . . . @ . . . . . . . . . . . 
+@ @ @ @ . . 9 @ @ . . 3 . . . . . . @ . 
+. . @ . @ 0 @ @ . . @ . @ @ . . . . @ . 
+8 @ . . . @ @ . . . . . @ . @ . . @ @ . 
+. . . @ . @ . @ . @ @ . . . @ . @ . @ . 
+. . . . . . . . . @ . @ . . 2 . @ @ . 5 
+. @ . . @ . @ . . . . . . . @ . . . . . 
+. . 4 . @ . . @ @ . @ . . . . . @ @ @ @ 
+. . . . . . @ @ . . . . . . . . . . . . 
+. . @ . . . . . . @ . @ . . . . . @ . @ 
+. @ . . @ @ . @ . @ 6 @ @ . @ @ @ @ . . 
+. . . . 1 . . . @ . @ . . . . @ @ @ . @ 
+@ @ . . . . . . . @ . @ @ . . . @ . @ @ 
+@ . . . . . . . . @ . . . . . . @ . . . 
+. @ . . @ . @ . . @ . . . . . . @ @ . . 
+. . . . . . . . . . . @ @ . @ . . . . . 
+. @ . . . @ . . @ . . . . . @ . @ . . . 
+. @ . @ . . . @ . . . @ @ . . @ . . . @ 
+. . . @ @ 7 @ . @ . . @ @ . . . @ . . @ 
+
+*** Running CBS ***
+Generate node 0
+[{'a1': 1, 'a2': 7, 'loc': [(16, 3)], 'timestep': 1}, {'a1': 4, 'a2': 9, 'loc': [(4, 8)], 'timestep': 5}, {'a1': 7, 'a2': 1, 'loc': [(16, 3)], 'timestep': 1}, {'a1': 9, 'a2': 4, 'loc': [(4, 8)], 'timestep': 5}]
+[{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 7, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}]
+[{'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}, {'agent': 9, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}]
+[{'agent': 7, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}]
+[{'agent': 9, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}, {'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}]
+Expand node 0
+collision: {'a1': 1, 'a2': 7, 'loc': [(16, 3)], 'timestep': 1}
+next constraint: {'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}]
+new path = [(16, 4), (16, 5), (15, 5), (14, 5), (13, 5), (12, 5), (12, 4)]
+Generate node 1
+next constraint: {'agent': 7, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}
+constraints: [{'agent': 7, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}]
+new path = [(15, 3), (15, 3), (16, 3), (16, 4), (17, 4), (18, 4), (18, 5), (19, 5)]
+Generate node 2
+Expand node 1
+collision: {'a1': 4, 'a2': 9, 'loc': [(4, 8)], 'timestep': 5}
+next constraint: {'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}]
+new path = [(0, 9), (1, 9), (2, 9), (3, 9), (3, 8), (3, 8), (4, 8), (5, 8), (6, 8), (6, 7), (6, 6), (6, 5), (6, 4), (6, 3), (6, 2), (7, 2), (8, 2)]
+Generate node 3
+next constraint: {'agent': 9, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 9, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}]
+new path = [(6, 5), (6, 6), (6, 7), (6, 8), (5, 8), (5, 8), (4, 8), (3, 8), (3, 9), (2, 9), (1, 9), (0, 9), (0, 8), (0, 7), (0, 6), (1, 6), (2, 6)]
+Generate node 4
+Expand node 3
+collision: {'a1': 4, 'a2': 9, 'loc': [(3, 8), (4, 8)], 'timestep': 6}
+next constraint: {'agent': 4, 'loc': [(3, 8), (4, 8)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}, {'agent': 4, 'loc': [(3, 8), (4, 8)], 'timestep': 6, 'positive': False}]
+new path = [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (4, 9), (4, 8), (5, 8), (6, 8), (6, 7), (6, 6), (6, 5), (6, 4), (6, 3), (6, 2), (7, 2), (8, 2)]
+Generate node 5
+next constraint: {'agent': 9, 'loc': [(4, 8), (3, 8)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(16, 3)], 'timestep': 1, 'positive': False}, {'agent': 4, 'loc': [(4, 8)], 'timestep': 5, 'positive': False}, {'agent': 9, 'loc': [(4, 8), (3, 8)], 'timestep': 6, 'positive': False}]
+new path = [(6, 5), (6, 6), (6, 7), (6, 8), (5, 8), (4, 8), (4, 9), (3, 9), (2, 9), (1, 9), (0, 9), (0, 8), (0, 7), (0, 6), (1, 6), (2, 6)]
+Generate node 6
+Expand node 5
+Total cost: 97
+
+All instances complete. Results saved to results.csv.

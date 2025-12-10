@@ -1,0 +1,395 @@
+
+*** Import instance: ../tmpInstances/exp23.txt ***
+Start locations
+. 9 . @ . . . . @ . . @ @ . @ . . . . . 
+8 . . . . . @ . @ . @ . . @ @ . . @ . . 
+. @ . @ @ . . . @ . . . . . . @ . . . . 
+. . . @ @ @ @ . @ . . . . @ @ @ @ . @ @ 
+. . . . . @ @ . @ . @ . . . . @ . . @ @ 
+. . . . . . @ . @ . . . @ @ . . . @ . 2 
+. @ . @ . . . . . . @ . . . @ . . . . . 
+. . . . . . . . @ . . . @ . 6 . . @ . . 
+. . . @ . . . . . @ . . . @ @ . . . @ @ 
+7 . . @ . . . @ . . . @ @ . @ . @ @ @ @ 
+. . . . . . . . . . . . @ . . 4 . @ . . 
+. . . . @ @ . @ . . . @ @ . @ . @ @ @ @ 
+. . . . . @ @ @ @ . @ . . . . . . . . . 
+@ . @ @ . @ . . . . @ @ @ @ . . . . . . 
+. . . . @ . . @ . . @ . . . @ . @ @ . . 
+@ @ . . @ . . . . . @ . . . . . . 0 . . 
+@ . @ @ . . . . . . . . . @ @ . . . . @ 
+. . . . @ @ . @ . . @ @ . . . . . . . . 
+@ 5 . . . . . . . . . @ @ @ . . . . @ @ 
+. @ . 1 @ . . @ 3 . @ . . . . . @ @ . . 
+
+Goal locations
+. . . @ . . 8 . @ . . @ @ . @ 4 . . 7 . 
+. . . . . . @ . @ . @ . . @ @ . . @ . . 
+. @ . @ @ . . . @ . . . . . . @ . . . . 
+. . . @ @ @ @ . @ . . . 1 @ @ @ @ . @ @ 
+. . . 2 . @ @ . @ . @ . . . . @ . . @ @ 
+. . . . . . @ . @ . 6 . @ @ . . . @ . . 
+. @ 0 @ . . . . . . @ . . . @ . . . . . 
+. . . . . . . . @ . . . @ . . . . @ . . 
+. . . @ . . 9 . . @ . . . @ @ . . . @ @ 
+. . . @ . . . @ . . . @ @ . @ . @ @ @ @ 
+. . . . . . . . . . . . @ . . . . @ . . 
+. . . . @ @ . @ . . . @ @ . @ . @ @ @ @ 
+. . . . . @ @ @ @ . @ . . . . . . . . . 
+@ . @ @ . @ . . . . @ @ @ @ . . . . . . 
+. . . . @ . . @ . . @ . . . @ . @ @ . . 
+@ @ . . @ . . . . . @ . . . . . . . . . 
+@ . @ @ . . . . . . . . . @ @ . . . . @ 
+. . . . @ @ . @ . . @ @ . . . . . . . . 
+@ . . . . . . . . . . @ @ @ . . . . @ @ 
+. @ . . @ 5 . @ . . @ . 3 . . . @ @ . . 
+
+*** Running CBS ***
+Generate node 0
+[{'a1': 0, 'a2': 1, 'loc': [(13, 9)], 'timestep': 12}, {'a1': 1, 'a2': 0, 'loc': [(13, 9)], 'timestep': 12}, {'a1': 2, 'a2': 4, 'loc': [(5, 16), (5, 15)], 'timestep': 6}, {'a1': 2, 'a2': 6, 'loc': [(5, 10)], 'timestep': 13}, {'a1': 2, 'a2': 7, 'loc': [(5, 10), (5, 9)], 'timestep': 14}, {'a1': 4, 'a2': 2, 'loc': [(5, 15), (5, 16)], 'timestep': 6}, {'a1': 6, 'a2': 2, 'loc': [(5, 10)], 'timestep': 13}, {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}, {'a1': 7, 'a2': 2, 'loc': [(5, 9), (5, 10)], 'timestep': 14}, {'a1': 7, 'a2': 6, 'loc': [(5, 10)], 'timestep': 14}, {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}, {'a1': 9, 'a2': 8, 'loc': [(1, 2)], 'timestep': 2}]
+[{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}]
+[{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}]
+[{'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}]
+[{'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+[{'agent': 2, 'loc': [(5, 10), (5, 9)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 9), (5, 10)], 'timestep': 14, 'positive': False}]
+[{'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}]
+[{'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+[{'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+[{'agent': 7, 'loc': [(5, 9), (5, 10)], 'timestep': 14, 'positive': False}, {'agent': 2, 'loc': [(5, 10), (5, 9)], 'timestep': 14, 'positive': False}]
+[{'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+[{'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+[{'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+Expand node 0
+collision: {'a1': 0, 'a2': 1, 'loc': [(13, 9)], 'timestep': 12}
+next constraint: {'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}]
+new path = [(15, 17), (15, 16), (15, 15), (15, 14), (15, 13), (15, 12), (15, 11), (16, 11), (16, 10), (16, 9), (15, 9), (14, 9), (14, 9), (13, 9), (12, 9), (11, 9), (10, 9), (9, 9), (9, 8), (8, 8), (8, 7), (7, 7), (7, 6), (7, 5), (7, 4), (7, 3), (7, 2), (6, 2)]
+Generate node 1
+next constraint: {'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}]
+new path = [(19, 3), (18, 3), (18, 4), (18, 5), (18, 6), (17, 6), (16, 6), (15, 6), (14, 6), (13, 6), (13, 7), (13, 8), (13, 8), (13, 9), (12, 9), (11, 9), (10, 9), (9, 9), (9, 10), (8, 10), (7, 10), (7, 11), (6, 11), (5, 11), (4, 11), (3, 11), (3, 12)]
+Generate node 2
+Expand node 1
+collision: {'a1': 2, 'a2': 4, 'loc': [(5, 16), (5, 15)], 'timestep': 6}
+next constraint: {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (5, 15), (5, 14), (4, 14), (4, 13), (4, 12), (4, 11), (5, 11), (5, 10), (5, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 3
+next constraint: {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}]
+new path = [(10, 15), (9, 15), (8, 15), (7, 15), (6, 15), (6, 16), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 16), (1, 16), (0, 16), (0, 15)]
+Generate node 4
+Expand node 3
+collision: {'a1': 2, 'a2': 6, 'loc': [(5, 10)], 'timestep': 13}
+next constraint: {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 5
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 6
+Expand node 5
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 7
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 8
+Expand node 4
+collision: {'a1': 2, 'a2': 6, 'loc': [(5, 10)], 'timestep': 13}
+next constraint: {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 9
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 10
+Expand node 9
+collision: {'a1': 2, 'a2': 4, 'loc': [(6, 16), (6, 15)], 'timestep': 5}
+next constraint: {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (7, 16), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 11
+next constraint: {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}]
+new path = [(10, 15), (9, 15), (8, 15), (7, 15), (7, 16), (6, 16), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 16), (1, 16), (0, 16), (0, 15)]
+Generate node 12
+Expand node 11
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 13
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 14
+Expand node 12
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 15
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 16
+Expand node 2
+collision: {'a1': 2, 'a2': 4, 'loc': [(5, 16), (5, 15)], 'timestep': 6}
+next constraint: {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (5, 15), (5, 14), (4, 14), (4, 13), (4, 12), (4, 11), (5, 11), (5, 10), (5, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 17
+next constraint: {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}]
+new path = [(10, 15), (9, 15), (8, 15), (7, 15), (6, 15), (6, 16), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 16), (1, 16), (0, 16), (0, 15)]
+Generate node 18
+Expand node 17
+collision: {'a1': 2, 'a2': 6, 'loc': [(5, 10)], 'timestep': 13}
+next constraint: {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 19
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 20
+Expand node 19
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 21
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 22
+Expand node 18
+collision: {'a1': 2, 'a2': 6, 'loc': [(5, 10)], 'timestep': 13}
+next constraint: {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (6, 15), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 23
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 24
+Expand node 23
+collision: {'a1': 2, 'a2': 4, 'loc': [(6, 16), (6, 15)], 'timestep': 5}
+next constraint: {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}]
+new path = [(5, 19), (5, 18), (6, 18), (6, 17), (6, 16), (7, 16), (7, 15), (7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (6, 8), (6, 7), (6, 6), (6, 5), (5, 5), (5, 4), (4, 4), (4, 3)]
+Generate node 25
+next constraint: {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}]
+new path = [(10, 15), (9, 15), (8, 15), (7, 15), (7, 16), (6, 16), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 16), (1, 16), (0, 16), (0, 15)]
+Generate node 26
+Expand node 25
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 27
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 28
+Expand node 26
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 14}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 29
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 30
+Expand node 8
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 31
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 32
+Expand node 14
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 33
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 34
+Expand node 16
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 35
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 36
+Expand node 22
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 37
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 38
+Expand node 28
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 39
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 40
+Expand node 30
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 15}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 41
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (5, 9), (5, 9), (5, 10), (5, 11), (4, 11), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 42
+Expand node 32
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 43
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 44
+Expand node 44
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 45
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 46
+Expand node 34
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 47
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 48
+Expand node 48
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 49
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 50
+Expand node 36
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 51
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 52
+Expand node 52
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 53
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 0, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 54
+Expand node 38
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 55
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 56
+Expand node 56
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 57
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 2, 'loc': [(5, 16), (5, 15)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 58
+Expand node 40
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 59
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 60
+Expand node 60
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 61
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 2, 'loc': [(6, 16), (6, 15)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 62
+Expand node 42
+collision: {'a1': 6, 'a2': 7, 'loc': [(5, 10)], 'timestep': 16}
+next constraint: {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 6, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(7, 14), (7, 13), (6, 13), (6, 12), (6, 11), (7, 11), (7, 10), (7, 9), (6, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 9), (5, 10)]
+Generate node 63
+next constraint: {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}]
+new path = [(9, 0), (8, 0), (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (6, 4), (6, 5), (6, 6), (6, 7), (6, 8), (6, 9), (5, 9), (4, 9), (3, 9), (3, 10), (3, 11), (3, 12), (4, 12), (4, 13), (4, 14), (5, 14), (5, 15), (5, 16), (4, 16), (4, 17), (3, 17), (2, 17), (2, 18), (1, 18), (0, 18)]
+Generate node 64
+Expand node 64
+collision: {'a1': 8, 'a2': 9, 'loc': [(1, 2)], 'timestep': 2}
+next constraint: {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 8, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(1, 0), (1, 1), (1, 1), (1, 2), (1, 3), (1, 4), (0, 4), (0, 5), (0, 6)]
+Generate node 65
+next constraint: {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}
+constraints: [{'agent': 1, 'loc': [(13, 9)], 'timestep': 12, 'positive': False}, {'agent': 4, 'loc': [(5, 15), (5, 16)], 'timestep': 6, 'positive': False}, {'agent': 2, 'loc': [(5, 10)], 'timestep': 13, 'positive': False}, {'agent': 4, 'loc': [(6, 15), (6, 16)], 'timestep': 5, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 14, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 15, 'positive': False}, {'agent': 7, 'loc': [(5, 10)], 'timestep': 16, 'positive': False}, {'agent': 9, 'loc': [(1, 2)], 'timestep': 2, 'positive': False}]
+new path = [(0, 1), (0, 2), (0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6), (7, 6), (8, 6)]
+Generate node 66
+Expand node 45
+Total cost: 166
+
+All instances complete. Results saved to results.csv.
