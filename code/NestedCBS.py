@@ -107,6 +107,8 @@ class NestedCBSSolver:
         self.num_generated = 0
         self.num_expanded = 0
 
+        self.peak_open = 0
+
     # --- low-level planning for one local agent ---
     def plan_agent(self, local_idx, constraints):
         """
@@ -143,6 +145,9 @@ class NestedCBSSolver:
             (node["cost"], len(node["collisions"]), self.num_generated, node),
         )
         self.num_generated += 1
+
+        if len(self.open_list) > self.peak_open:
+            self.peak_open = len(self.open_list)
 
     def pop_node(self):
         _, _, _, node = heapq.heappop(self.open_list)

@@ -139,6 +139,13 @@ class MACBS:
         self.open_list = []
         self.start_time = None
 
+        # low-level statisics
+        self.ll_total_expanded = 0      # Sum of the low level expanded states
+        self.ll_max_peak_open = 0       # max size of open list 
+        self.ll_call_count = 0          # how many meta agents low level calls
+
+
+
         # Low-level heuristics for single-agent A*
         # heuristics[i] is a dict for agent i's goal
         self.heuristics = [
@@ -224,6 +231,10 @@ class MACBS:
         if joint_paths is None:
             return None
 
+        self.ll_total_expanded += js.num_expanded
+        self.ll_max_peak_open = max(self.ll_max_peak_open, js.peak_open)
+        self.ll_call_count += 1
+
         group_paths = {}
         for i, a in enumerate(agents):
             group_paths[a] = joint_paths[i]
@@ -245,7 +256,15 @@ class MACBS:
             agents,       # global IDs
             constraints,
         )
-        return solver.find_solution()   # dict {global_id: path} or None
+        group_paths = solver.find_solution()
+        if group_paths is None:
+            return None
+        
+        self.ll_total_expanded += solver.num_expanded
+        self.ll_max_peak_open = max(self.ll_max_peak_open, solver.peak_open)
+        self.ll_call_count += 1
+
+        return group_paths
 
     def replan_all_groups(self, constraints, meta_groups):
         """
@@ -395,9 +414,18 @@ class MACBS:
         CPU_time = timer.time() - self.start_time
         print("CPU time (s):    {:.4f}".format(CPU_time))
         print("Sum of costs:    {}".format(get_sum_of_cost(node["paths"])))
-        print("Expanded nodes:  {}".format(self.num_of_expanded))
-        print("Generated nodes: {}".format(self.num_of_generated))
+        print("Expanded HL nodes:  {}".format(self.num_of_expanded))
+        print("Generated HL nodes: {}".format(self.num_of_generated))
 
+        if self.ll_call_count > 0:
+            avg_ll_expanded = self.ll_total_expanded / float(self.ll_call_count)
+        else:
+            avg_ll_expanded = 0.0
+        
+        print("Low-level calls: {}".format(self.ll_call_count))
+        print("Low-level total expansions:  {}".format(self.ll_total_expanded))
+        print("Low-level avg expansions/call:   {:.2f}".format(avg_ll_expanded))
+        print("Low-level peak open size:    {}".format(self.ll_max_peak_open))
 
 if __name__ == "__main__":
     # Tiny sanity test: 3x3 empty map, 2 agents swapping corners
