@@ -3,6 +3,10 @@ import argparse
 import glob
 from pathlib import Path
 
+# Existing solvers
+from cbs import CBSSolver
+
+# Your MA-CBS implementation
 from ma_cbs import MACBS
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
@@ -114,6 +118,27 @@ if __name__ == "__main__":
         my_map, starts, goals = import_mapf_instance(file)
         print_mapf_instance(my_map, starts, goals)
 
+        # Select solver
+        solver_name = args.solver.upper()
+
+        if solver_name == "CBS":
+            print("*** Running CBS ***")
+            # surpress problem errors
+            try:
+                solver = CBSSolver(my_map, starts, goals)
+                paths = solver.find_solution(disjoint=args.disjoint)#, meta=False)
+            except:
+                exit()
+
+        elif solver_name == "MACBS":
+            print("*** Running Meta-Agent CBS (MA-CBS) ***")
+            solver = MACBS(
+                my_map,
+                starts,
+                goals,
+                merge_threshold=args.merge_threshold
+            )
+            paths = solver.find_solution()
         print(f"*** MA-CBS ({args.macbs_low_level.upper()}) ***")
         solver = MACBS(
             my_map,
@@ -134,4 +159,7 @@ if __name__ == "__main__":
             animation.show()
 
     result_file.close()
-    print("\n✅ All instances complete. Results saved to results.csv.")
+    try:
+        print("\n✅ All instances complete. Results saved to results.csv.")
+    except:
+        print("\nAll instances complete. Results saved to results.csv.")
