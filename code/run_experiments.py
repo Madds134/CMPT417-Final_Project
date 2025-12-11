@@ -136,19 +136,19 @@ if __name__ == "__main__":
                 my_map,
                 starts,
                 goals,
-                merge_threshold=args.merge_threshold
+                merge_threshold=args.merge_threshold,
+                low_level_mode= args.macbs_low_level,
             )
             paths = solver.find_solution()
         print(f"*** MA-CBS ({args.macbs_low_level.upper()}) ***")
-        solver = MACBS(
-            my_map,
-            starts,
-            goals,
-            merge_threshold=args.merge_threshold,
-            low_level_mode=args.macbs_low_level,
-        )
-        paths = solver.find_solution()
-
+        # solver = MACBS(
+        #     my_map,
+        #     starts,
+        #     goals,
+        #     merge_threshold=args.merge_threshold,
+        #     low_level_mode=args.macbs_low_level,
+        # )
+        #paths = solver.find_solution()
         cost = get_sum_of_cost(paths)
         print(f"Total cost: {cost}")
         result_file.write(f"{file},MACBS-{args.macbs_low_level},{cost}\n")
@@ -160,6 +160,6 @@ if __name__ == "__main__":
 
     result_file.close()
     try:
-        print("\n✅ All instances complete. Results saved to results.csv.")
+        print("\n All instances complete. Results saved to results.csv.")
     except:
         print("\nAll instances complete. Results saved to results.csv.")
