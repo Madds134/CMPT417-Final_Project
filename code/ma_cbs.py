@@ -428,20 +428,20 @@ class MACBS:
     def print_results(self, node):
         print("\nFound a solution with MA-CBS!\n")
         CPU_time = timer.time() - self.start_time
-        print("CPU time (s):    {:.4f}".format(CPU_time))
-        print("Sum of costs:    {}".format(get_sum_of_cost(node["paths"])))
-        print("Expanded HL nodes:  {}".format(self.num_of_expanded))
-        print("Generated HL nodes: {}".format(self.num_of_generated))
+        print("CPU time (s): |{:.6f}".format(CPU_time))
+        print("Sum of costs: |{}".format(get_sum_of_cost(node["paths"])))
+        print("Expanded HL nodes: |{}".format(self.num_of_expanded))
+        print("Generated HL nodes: |{}".format(self.num_of_generated))
 
         if self.ll_call_count > 0:
             avg_ll_expanded = self.ll_total_expanded / float(self.ll_call_count)
         else:
             avg_ll_expanded = 0.0
         
-        print("Low-level calls: {}".format(self.ll_call_count))
-        print("Low-level total expansions:  {}".format(self.ll_total_expanded))
-        print("Low-level avg expansions/call:   {:.2f}".format(avg_ll_expanded))
-        print("Low-level peak open size:    {}".format(self.ll_max_peak_open))
+        print("Low-level calls: |{}".format(self.ll_call_count))
+        print("Low-level total expansions: |{}".format(self.ll_total_expanded))
+        print("Low-level avg expansions/call: |{:.2f}".format(avg_ll_expanded))
+        print("Low-level peak open size: |{}".format(self.ll_max_peak_open))
 
 if __name__ == "__main__":
     # Tiny sanity test: 3x3 empty map, 2 agents swapping corners
