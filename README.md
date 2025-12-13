@@ -34,7 +34,7 @@ After all runs finish, parses the logs and appends one CSV line per instance to 
 
 ## Output
 Each testData.csv row has the form:
-\<low_level_type>, <CPUtime>, <SUMcost>, <EXPHLnode>, <GENHLnode>,
+\<low_level_type>, \<CPUtime>, \<SUMcost>, \<EXPHLnode>, \<GENHLnode>,
 \<LLcalls>, \<LLTEcall>, \<LLAEcall>, \<LLPOsize>, \<TOTcost>, \<instance_index>
 This can be loaded into Excel, Google Sheets, and other platforms to reproduce the plots in the report.
 
