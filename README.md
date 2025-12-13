@@ -17,8 +17,8 @@ Instance generation is handled by the instanceScript.bash (which wraps code/gene
 - \<#problems>: How many instances to generate.
 - \<timeout>: Verification timeout (in seconds) for CBS on each instance.
 By default the script
-- writes tempory instances into tmpInstances/exp<i>.txt
-- verifies each instance using CBS
+- Writes tempory instances into tmpInstances/exp<i>.txt
+- Verifies each instance using CBS
 copies valid instances into instances.text<i>.txt
 
 ## Running MA-CBS Experiments
@@ -26,8 +26,8 @@ Performance experiments are driven testSuite.bash, which repeatedly calls code/r
 ./testSuite.bash \<path/to/instanceFolder/> \<solver> \<#problems> \<timeout> \<low_level_type> \<merge_threshold>
 - \<solver>: Currently MA-CBS.
 - \<#problems>: Number of instances to run.
-- \<timeout>: per-instance time limit in seconds.
-- \<low_level_type>: joint for joint A* or nested for nested CBS.
+- \<timeout>: Per-instance time limit in seconds.
+- \<low_level_type>: Joint for joint A* or nested for nested CBS.
 - \<merge_threshold>: MA-CBS merge threhsold B.
 The script saves the raw console output to logs/log<i>.
 After all runs finish, parses the logs and appends one CSV line per instance to testData.csv.
