@@ -10,9 +10,9 @@ All scripts are intended to be run from the repository root.
 
 ## Generating Random MAPF Instances
 Instance generation is handled by the instanceScript.bash (which wraps code/generateProblem.py) and verifies that CBS can solve each instance.
-./instanceScript.bash <#agents> <sizeX> <sizeY> <density> <#problems> <timeout>
+./instanceScript.bash \<#agents> \<sizeX> \<sizeY> \<density> \<#problems> \<timeout>
 - \<#agents>: The number of agents in each instance.
-- \<sizeX>, <sizeY>: The grid dimensions.
+- \<sizeX>, \<sizeY>: The grid dimensions.
 - \<density>: Static obstacle density (0.3 for 30%).
 - \<#problems>: How many instances to generate.
 - \<timeout>: Verification timeout (in seconds) for CBS on each instance.
@@ -23,7 +23,7 @@ copies valid instances into instances.text<i>.txt
 
 ## Running MA-CBS Experiments
 Performance experiments are driven testSuite.bash, which repeatedly calls code/run_experiments.py and parses the printed statistics into testData.csv
-./testSuite.bash <path/to/instanceFolder/> <solver> <#problems> <timeout> <low_level_type> <merge_threshold>
+./testSuite.bash \<path/to/instanceFolder/> \<solver> \<#problems> \<timeout> \<low_level_type> \<merge_threshold>
 - \<solver>: Currently MA-CBS.
 - \<#problems>: Number of instances to run.
 - \<timeout>: per-instance time limit in seconds.
