@@ -8,23 +8,22 @@ from single_agent_planner import (
     get_location,
 )
 
-
-###########################################################
 # Collision detection helpers (local indices)
-###########################################################
+
 
 def detect_collision(path1, path2):
+    # Check up to the longest path length (agents wait at goal if shorter)
     timesteps = max(len(path1), len(path2))
 
     for t in range(timesteps):
         loc1 = get_location(path1, t)
         loc2 = get_location(path2, t)
 
-        # Vertex collision
+        # Vertex collision: same location at same timestep
         if loc1 == loc2:
             return {"loc": [loc1], "timestep": t}
 
-        # Edge collision
+        # Edge collision: agents swap locations between t-1 and t
         if t > 0:
             prev1 = get_location(path1, t - 1)
             prev2 = get_location(path2, t - 1)
@@ -37,6 +36,8 @@ def detect_collision(path1, path2):
 def detect_collisions(paths):
     collisions = []
     n = len(paths)
+
+    # Check all unordered agent pairs
     for i in range(n):
         for j in range(i + 1, n):
             c = detect_collision(paths[i], paths[j])
@@ -53,12 +54,15 @@ def standard_splitting(collision):
     loc = collision["loc"]
     t = collision["timestep"]
 
+    # Vertex collision, forbiding both agents from occupying the vertex at t
     if len(loc) == 1:
         v = loc[0]
         return [
             {"agent": a1, "loc": [v], "timestep": t},
             {"agent": a2, "loc": [v], "timestep": t},
         ]
+
+    # Edge collision, forbiding each agent from traversing the conflicting edge
     elif len(loc) == 2:
         u, v = loc
         return [
@@ -68,53 +72,49 @@ def standard_splitting(collision):
     return []
 
 
-###########################################################
 # Nested CBS (used as low-level solver inside MA-CBS)
-###########################################################
-
 class NestedCBSSolver:
     """
-    Standard CBS, but only over a subset of agents (a meta-agent group),
-    and respecting the *parent* constraints passed in from MA-CBS.
+    Standard CBS over a subset of agents (meta-agent),
+    respecting parent constraints from MA-CBS.
 
-    - local agents are indexed 0..k-1
-    - self.agents holds the *global* agent IDs used in constraints / a_star
+    Local agents are indexed 0..k-1.
+    self.agents maps local index -> global agent ID.
     """
 
     def __init__(self, my_map, starts, goals, agents, parent_constraints):
         """
-        my_map            : grid
-        starts, goals     : lists for THIS group (same order as agents)
-        agents            : list of GLOBAL agent IDs
-        parent_constraints: list of constraints from MA-CBS
+        my_map             : grid
+        starts, goals      : starts/goals for this group (local order)
+        agents             : global agent IDs
+        parent_constraints : constraints inherited from MA-CBS
         """
         assert len(starts) == len(goals) == len(agents)
+
         self.my_map = my_map
         self.local_starts = list(starts)
         self.local_goals = list(goals)
-        self.agents = list(agents)   # global IDs
+        self.agents = list(agents)
         self.num_local = len(agents)
 
-        # Heuristics per local agent
+        # Precompute heuristics for each local agent goal
         self.heuristics = [
             compute_heuristics(my_map, g) for g in self.local_goals
         ]
 
-        # Root constraints already include parent constraints
+        # Constraints passed from the parent MA-CBS node
         self.base_constraints = list(parent_constraints)
 
         self.open_list = []
         self.num_generated = 0
         self.num_expanded = 0
-
         self.peak_open = 0
 
-    # --- low-level planning for one local agent ---
+    #  low-level planning for one local agent 
     def plan_agent(self, local_idx, constraints):
         """
-        Plan for local agent 'local_idx' with a_star.
-        constraints are global (include all agents) but a_star
-        filters them by the agent id we pass.
+        Run A* for a single local agent.
+        Constraints are global; a_star filters by agent ID.
         """
         global_id = self.agents[local_idx]
         h_vals = defaultdict(int, self.heuristics[local_idx])
@@ -130,6 +130,7 @@ class NestedCBSSolver:
         return path
 
     def replan_all(self, constraints):
+        # Replan all local agents under the same constraint set
         paths = []
         for i in range(self.num_local):
             p = self.plan_agent(i, constraints)
@@ -138,40 +139,37 @@ class NestedCBSSolver:
             paths.append(p)
         return paths
 
-    # --- open list helpers ---
+    #  open list helpers 
     def push_node(self, node):
+        # Order by cost, then number of collisions, then FIFO
         heapq.heappush(
             self.open_list,
             (node["cost"], len(node["collisions"]), self.num_generated, node),
         )
         self.num_generated += 1
-
-        if len(self.open_list) > self.peak_open:
-            self.peak_open = len(self.open_list)
+        self.peak_open = max(self.peak_open, len(self.open_list))
 
     def pop_node(self):
         _, _, _, node = heapq.heappop(self.open_list)
         self.num_expanded += 1
         return node
 
-    # --- main CBS over this group ---
+    #  main CBS over this group 
     def find_solution(self):
         """
-        Runs CBS on this group only, returns:
-          {global_agent_id: path}
-        or None if infeasible under the given parent constraints.
+        Run CBS on this meta-agent group.
+        Returns a dict {global_agent_id: path} or None.
         """
-        # Root node
+        # Root node uses only parent constraints
         root_constraints = list(self.base_constraints)
         root_paths = self.replan_all(root_constraints)
         if root_paths is None:
             return None
 
-        root_collisions = detect_collisions(root_paths)
         root = {
             "constraints": root_constraints,
             "paths": root_paths,
-            "collisions": root_collisions,
+            "collisions": detect_collisions(root_paths),
             "cost": get_sum_of_cost(root_paths),
         }
 
@@ -183,17 +181,16 @@ class NestedCBSSolver:
         while self.open_list:
             node = self.pop_node()
 
+            # Collision-free solution
             if len(node["collisions"]) == 0:
-                # Convert local index -> global agent ID mapping
                 result = {}
                 for i, path in enumerate(node["paths"]):
-                    global_id = self.agents[i]
-                    result[global_id] = path
+                    result[self.agents[i]] = path
                 return result
 
             collision = node["collisions"][0]
 
-            # Split with standard CBS
+            # Standard CBS split
             new_constraints = standard_splitting(collision)
 
             for c in new_constraints:
@@ -209,6 +206,7 @@ class NestedCBSSolver:
                     }
                 )
 
+                # Replan entire group under new constraint
                 child_paths = self.replan_all(child_constraints)
                 if child_paths is None:
                     continue
@@ -225,7 +223,7 @@ class NestedCBSSolver:
 
 
 if __name__ == "__main__":
-    # Tiny sanity check: 2 agents on 3x3 empty map
+    # Tiny sanity check: 2 agents swapping corners on empty 3x3 grid
     my_map = [
         [False, False, False],
         [False, False, False],
