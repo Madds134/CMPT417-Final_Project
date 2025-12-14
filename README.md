@@ -32,6 +32,13 @@ Performance experiments are driven testSuite.bash, which repeatedly calls code/r
 The script saves the raw console output to logs/log\<i>.
 After all runs finish, parses the logs and appends one CSV line per instance to testData.csv.
 
+## Instances Ran
+- instances_desnsity3/
+- instances_increaseAgent2/
+- instances_increaseSize/
+- instance2_05050520/
+- instances_1020203060/
+
 ## Output
 Each testData.csv row has the form:
 \<low_level_type>, \<CPUtime>, \<SUMcost>, \<EXPHLnode>, \<GENHLnode>,
